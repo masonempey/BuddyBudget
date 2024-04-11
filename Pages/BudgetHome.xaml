@@ -1,0 +1,345 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:BuddyBudget.Entity"
+             x:Class="BuddyBudget.BudgetHome"
+             x:Name="Budgethome"
+             BackgroundImageSource="budgethome2.png">
+
+    <VerticalStackLayout>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="340" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Image x:Name="BudgetView" IsVisible="{Binding IsBudgetViewVisible}" Source="budgetview.png" Aspect="AspectFill" Grid.Column="1" WidthRequest="1400" Margin="0,50,0,0"/>
+            <VerticalStackLayout x:Name="OptionsMenuLayout" Grid.Column="0" Margin="0, 0, 0, 0">
+                <Grid RowSpacing="100">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Frame x:Name="DropDownOptionMenu" Grid.Row="0" Margin="270,12, 0, 0" BackgroundColor="Transparent" Padding="5" HasShadow="False" BorderColor="Transparent" HeightRequest="35" WidthRequest="40">
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="DropDown" />
+                        </Frame.GestureRecognizers>
+                        <StackLayout Spacing="10">
+                            <BoxView Color="#FFF" WidthRequest="20" HeightRequest="1" />
+                            <BoxView Color="#FFF" WidthRequest="20" HeightRequest="1" />
+                            <BoxView Color="#FFF" WidthRequest="20" HeightRequest="1" />
+                        </StackLayout>
+                    </Frame>
+                    <ImageButton x:Name="DashboardButton"
+                             WidthRequest="200"
+                             Clicked="Button_Clicked"
+                             BackgroundColor="Transparent"
+                             BorderWidth="0"
+                             BorderColor="Transparent"
+                             Source="dashboardwhite.png"
+                             Grid.Row="1"
+                             IsVisible="True">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal" />
+                                <VisualState x:Name="PointerOver">
+                                    <VisualState.Setters>
+                                        <Setter Property="Source" Value="dashboardblue.png" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                    </ImageButton>
+                    <ImageButton x:Name="AddExpenseButton"
+                     WidthRequest="210"
+                     HeightRequest="95"
+                     Clicked="Button_Clicked"
+                     BackgroundColor="Transparent"
+                     BorderWidth="0"
+                     BorderColor="Transparent"
+                     Source="addexpensewhite.png"
+                     Grid.Row="2"
+                     Margin="5, 0, 0, 0"
+                     IsVisible="True">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal" />
+                                <VisualState x:Name="PointerOver">
+                                    <VisualState.Setters>
+                                        <Setter Property="Source" Value="addexpenseblue.png" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                    </ImageButton>
+                    <ImageButton x:Name="ReportsButton"
+                     WidthRequest="250"
+                     HeightRequest="50"
+                     Clicked="Button_Clicked"
+                     BackgroundColor="Transparent"
+                     BorderWidth="0"
+                     BorderColor="Transparent"
+                     Source="reportswhite.png"
+                     Grid.Row="3"  
+                     Margin="0, 0, 30, 0"
+                     IsVisible="True">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal" />
+                                <VisualState x:Name="PointerOver">
+                                    <VisualState.Setters>
+                                        <Setter Property="Source" Value="reportsblue.png" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                    </ImageButton>
+                    <ImageButton x:Name="LogoutButton"
+                     WidthRequest="250"
+                     HeightRequest="95"
+                     Clicked="Button_Clicked"
+                     BackgroundColor="Transparent"
+                     BorderWidth="0"
+                     BorderColor="Transparent"
+                     Source="logoutwhite.png"
+                     Grid.Row="4"
+                     Margin="0, 0, 90, 0"
+                     IsVisible="True">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal" />
+                                <VisualState x:Name="PointerOver">
+                                    <VisualState.Setters>
+                                        <Setter Property="Source" Value="logoutblue.png" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                    </ImageButton>
+                </Grid>
+            </VerticalStackLayout>
+            <VerticalStackLayout x:Name="BudgetOptionScreen" IsVisible="{Binding IsBudgetOptionScreenVisible}" Margin="0,0,0,0" Grid.Column="1" Grid.Row="0">
+                <Image Source="letscreatebudget.png" WidthRequest="450" HorizontalOptions="Center" Margin="-100,20,0,0" />
+                <Grid RowSpacing="40" Margin="50,0,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <Image Source="budgeticon.png" HeightRequest="55" WidthRequest="55" HorizontalOptions="Start" Grid.Row="1" Grid.Column="0" Margin="400,0,0,0" />
+                    <Entry Placeholder="Monthly Budget" x:Name="MonthlyBudgetEntry" WidthRequest="200" HeightRequest="0" Grid.Row="1" Grid.Column="1" HorizontalOptions="Start"/>
+                    <Image x:Name="writeicon" Source="writeicon.png" HeightRequest="25" WidthRequest="25" Grid.Row="1" Grid.Column="2" HorizontalOptions="Start" />
+
+                    <Image Source="houseicon.png" HeightRequest="55" WidthRequest="55" HorizontalOptions="Start" Grid.Row="2" Grid.Column="0" Margin="400,0,0,0" />
+                    <Entry x:Name="HousingEntry" Placeholder="Housing Budget" WidthRequest="200" HeightRequest="0" Grid.Row="2" Grid.Column="1" HorizontalOptions="Start" />
+                    <Image Source="writeicon.png" HeightRequest="25" WidthRequest="25" Grid.Row="2" Grid.Column="2" HorizontalOptions="Start"/>
+
+                    <Image Source="toolicon.png" HeightRequest="55" WidthRequest="55" HorizontalOptions="Start" Grid.Row="3" Grid.Column="0" Margin="400,0,0,0"/>
+                    <Entry x:Name="UtilitiesEntry" Placeholder="Utilities Budget" WidthRequest="200" HeightRequest="0" Grid.Row="3" Grid.Column="1" HorizontalOptions="Start"  />
+                    <Image Source="writeicon.png" HeightRequest="25" WidthRequest="25" Grid.Row="3" Grid.Column="2" HorizontalOptions="Start" />
+
+                    <Image Source="foodicon.png" HeightRequest="55" WidthRequest="55" HorizontalOptions="Start" Grid.Row="4" Grid.Column="0" Margin="400,0,0,0"/>
+                    <Entry x:Name="GroceriesEntry" Placeholder="Groceries Budget" WidthRequest="200" HeightRequest="0" Grid.Row="4" Grid.Column="1" HorizontalOptions="Start" />
+                    <Image Source="writeicon.png" HeightRequest="25" WidthRequest="25" Grid.Row="4" Grid.Column="2" HorizontalOptions="Start" />
+
+                    <Image Source="caricon.png" HeightRequest="55" WidthRequest="55" HorizontalOptions="Start" Grid.Row="5" Grid.Column="0" Margin="400,0,0,0"/>
+                    <Entry x:Name="TransportationEntry" Placeholder="Transportation Budget" WidthRequest="200" HeightRequest="0" Grid.Row="5" Grid.Column="1" HorizontalOptions="Start"  />
+                    <Image Source="writeicon.png" HeightRequest="25" WidthRequest="25" Grid.Row="5" Grid.Column="2" HorizontalOptions="Start" />
+
+                    <Image Source="popcornicon.png" HeightRequest="55" WidthRequest="55" HorizontalOptions="Start" Grid.Row="6" Grid.Column="0" Margin="400,0,0,0"/>
+                    <Entry x:Name="EntertainmentEntry" Placeholder="Entertainment Budget" WidthRequest="200" HeightRequest="0" Grid.Row="6" Grid.Column="1" HorizontalOptions="Start"  />
+                    <Image Source="writeicon.png" HeightRequest="25" WidthRequest="25" Grid.Row="6" Grid.Column="2" HorizontalOptions="Start" />
+
+                    <Image Source="questionicon.png" HeightRequest="55" WidthRequest="55" HorizontalOptions="Start" Grid.Row="7" Grid.Column="0" Margin="400,0,0,0"/>
+                    <Entry x:Name="MiscellaneousEntry" Placeholder="Miscellaneous Budget" WidthRequest="200" HeightRequest="0" Grid.Row="7" Grid.Column="1" HorizontalOptions="Start"  />
+                    <Image Source="writeicon.png" HeightRequest="25" WidthRequest="25" Grid.Row="7" Grid.Column="2" HorizontalOptions="Start" />
+
+                    <Image Source="coinicon.png" HeightRequest="55" WidthRequest="55" HorizontalOptions="Start" Grid.Row="8" Grid.Column="0" Margin="400,0,0,0"/>
+                    <Entry x:Name="SavingsEntry" Placeholder="Savings Budget" WidthRequest="200" HeightRequest="0" Grid.Row="8" Grid.Column="1" HorizontalOptions="Start" />
+                    <Image Source="writeicon.png" HeightRequest="25" WidthRequest="25" Grid.Row="8" Grid.Column="2" HorizontalOptions="Start" />
+
+                    <Image Source="debticon.png" HeightRequest="55" WidthRequest="55" HorizontalOptions="Start" Grid.Row="9" Grid.Column="0" Margin="400,0,0,0" />
+                    <Entry x:Name="DebtEntry" Placeholder="Debt Budget" WidthRequest="200" HeightRequest="0" Grid.Row="9" Grid.Column="1" HorizontalOptions="Start" />
+                    <Image Source="writeicon.png" HeightRequest="25" WidthRequest="25" Grid.Row="9" Grid.Column="2" HorizontalOptions="Start" />
+                </Grid>
+                <StackLayout Margin="280,-600,0,0" WidthRequest="50">
+                    <ImageButton x:Name="CreateBudgetButton" Source="savebudgetblue.png" WidthRequest="50" BackgroundColor="Transparent" BorderWidth="0" BorderColor="Transparent" Clicked="Button_Clicked" >
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal" />
+                                <VisualState x:Name="PointerOver">
+                                    <VisualState.Setters>
+                                        <Setter Property="Source" Value="savebudgetwhite.png" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                    </ImageButton>
+                </StackLayout>
+            </VerticalStackLayout>
+            <VerticalStackLayout x:Name="ViewLayout" IsVisible="{Binding IsViewLayoutVisible}" Margin="0,0,0,0" Grid.Column="1" Grid.Row="0">
+                <Grid Margin="100,125,0,0" RowSpacing="150">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30" />
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="425" />
+                    </Grid.RowDefinitions>
+                    <Label Margin="80,-50,0,0" Grid.Row="0" HorizontalOptions="Start">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="Hello Again, " TextColor="#FFF" FontSize="22" />
+                                    <Span Text="{Binding UserName}" TextColor="#FFF" FontSize="22"/>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                    <Label Margin="220,-90,200,0" Grid.Row="1" HorizontalOptions="Center">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="$" FontSize="48" TextColor="#FFF" />
+                                <Span Text="{Binding RemainingMonthlyBudget}" FontSize="48" TextColor="#FFF" />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <ImageButton x:Name="CreateNewBudgetButton" Source="createnewbudgetblue.png" BackgroundColor="Transparent" BorderWidth="0" BorderColor="Transparent" Clicked="Button_Clicked" Margin="0,-150,100,0" VerticalOptions="Center" HorizontalOptions="End" WidthRequest="250" Grid.Row="0" >
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal" />
+                                <VisualState x:Name="PointerOver">
+                                    <VisualState.Setters>
+                                        <Setter Property="Source" Value="createnewbudgetwhite.png" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                    </ImageButton>
+                    <HorizontalStackLayout Grid.Row="2"  Margin="80,0,0,0">
+                        <Grid ColumnSpacing="0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="100" />
+                                <ColumnDefinition Width="200" />
+                                <ColumnDefinition Width="100" />
+                                <ColumnDefinition Width="230" />
+                                <ColumnDefinition Width="90" />
+                                <ColumnDefinition Width="220" />
+                                <ColumnDefinition Width="90" />
+                                <ColumnDefinition Width="220" />
+                            </Grid.ColumnDefinitions>
+
+                            <Rectangle x:Name="SetHousingBudget" Fill="#CFDFE8" HeightRequest="{Binding SetHousingHeight}" WidthRequest="30" VerticalOptions="End" Grid.Row="0" Grid.Column="0" Margin="0,0,0,0" />
+                            <Rectangle x:Name="HousingBudget" Fill="#FFF" HeightRequest="{Binding HousingHeight}" WidthRequest="30" VerticalOptions="End" Grid.Row="0" Grid.Column="0"  Margin="60,0,0,0"/>
+
+                            <Rectangle x:Name="SetUtilitiesBudget" Fill="#CFDFE8" HeightRequest="{Binding SetUtilitiesHeight}" WidthRequest="30" VerticalOptions="End" Grid.Row="0" Grid.Column="1" Margin="0,0,0,0"/>
+                            <Rectangle x:Name="UtilitiesBudget" Fill="#FFF" HeightRequest="{Binding UtilitiesHeight}" WidthRequest="30" VerticalOptions="End" Grid.Row="0" Grid.Column="1" Margin="60,0,0,0" />
+
+                            <Rectangle x:Name="SetGroceriesHeight" Fill="#CFDFE8" HeightRequest="{Binding SetGroceriesHeight}" WidthRequest="30" VerticalOptions="End" Grid.Row="0" Grid.Column="2" Margin="0,0,0,0" />
+                            <Rectangle x:Name="GroceriesBudget" Fill="#FFF" HeightRequest="{Binding GroceriesHeight}" WidthRequest="30" VerticalOptions="End" Grid.Row="0" Grid.Column="2" Margin="60,0,0,0" />
+
+                            <Rectangle x:Name="SetTransportationBudget" Fill="#CFDFE8" HeightRequest="{Binding SetTransportationHeight}" WidthRequest="30" VerticalOptions="End" Grid.Row="0" Grid.Column="3" Margin="0,0,0,0" />
+                            <Rectangle x:Name="TransportationBudget" Fill="#FFF" HeightRequest="{Binding TransportationHeight}" WidthRequest="30" VerticalOptions="End" Grid.Row="0" Grid.Column="3" Margin="60,0,0,0"/>
+
+                            <Rectangle x:Name="SetMiscBudget" Fill="#CFDFE8" HeightRequest="{Binding SetMiscHeight}" WidthRequest="30" Grid.Column="4" VerticalOptions="End" Grid.Row="0" Margin="0,0,0,0"/>
+                            <Rectangle x:Name="MiscBudget" Fill="#FFF" HeightRequest="{Binding MiscHeight}" WidthRequest="30" Grid.Column="4" VerticalOptions="End" Grid.Row="0" Margin="60,0,0,0"/>
+
+                            <Rectangle x:Name="SetEntertainmentBudget" Fill="#CFDFE8" HeightRequest="{Binding SetEntertainmentHeight}" WidthRequest="30" VerticalOptions="End" Grid.Row="0" Grid.Column="5" Margin="0,0,0,0"/>
+                            <Rectangle x:Name="EntertainmentBudget" Fill="#FFF" HeightRequest="{Binding EntertainmentHeight}" WidthRequest="30" VerticalOptions="End" Grid.Row="0" Grid.Column="5" Margin="60,0,0,0"/>
+
+                            <Rectangle x:Name="SetSavingsBudget" Fill="#CFDFE8" HeightRequest="{Binding SetSavingsHeight}" WidthRequest="30" VerticalOptions="End" Grid.Row="0" Grid.Column="6" Margin="0,0,0,0"/>
+                            <Rectangle x:Name="SavingsBudget" Fill="#FFF" HeightRequest="{Binding SavingsHeight}" WidthRequest="30" VerticalOptions="End" Grid.Row="0" Grid.Column="6" Margin="60,0,0,0" />
+
+                            <Rectangle x:Name="SetDebtBudget" Fill="#CFDFE8" HeightRequest="{Binding SetDebtHeight}" WidthRequest="30" VerticalOptions="End" Grid.Row="0" Grid.Column="7" Margin="0,0,0,0"/>
+                            <Rectangle x:Name="DebtBudget" Fill="#FFF" HeightRequest="{Binding DebtHeight}" WidthRequest="30" VerticalOptions="End" Grid.Row="0" Grid.Column="7" Margin="60,0,0,0"/>
+                        </Grid>
+                    </HorizontalStackLayout>
+                </Grid>
+            </VerticalStackLayout>
+            <VerticalStackLayout x:Name="AddExpenseLayout" IsVisible="{Binding IsAddExpenseLayoutVisible}" Grid.Column="1" Grid.Row="0" Margin="0,0,0,0">
+                <Image Source="letsaddexpenses.png" WidthRequest="450" HorizontalOptions="Center" Margin="-100,20,0,0" />
+                <Grid RowSpacing="40" Margin="50,50,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <Image Source="houseicon.png" HeightRequest="55" WidthRequest="55" HorizontalOptions="Start" Grid.Row="0" Grid.Column="0" Margin="400,0,0,0" />
+                    <Entry x:Name="HousingExpenseEntry" Placeholder="Housing Expense" WidthRequest="200" HeightRequest="0" Grid.Row="0" Grid.Column="1" HorizontalOptions="Start" />
+                    <Image Source="writeicon.png" HeightRequest="25" WidthRequest="25" Grid.Row="0" Grid.Column="2" HorizontalOptions="Start"/>
+
+                    <Image Source="toolicon.png" HeightRequest="55" WidthRequest="55" HorizontalOptions="Start" Grid.Row="1" Grid.Column="0" Margin="400,0,0,0"/>
+                    <Entry x:Name="UtilitiesExpenseEntry" Placeholder="Utilities Expense" WidthRequest="200" HeightRequest="0" Grid.Row="1" Grid.Column="1" HorizontalOptions="Start"  />
+                    <Image Source="writeicon.png" HeightRequest="25" WidthRequest="25" Grid.Row="1" Grid.Column="2" HorizontalOptions="Start" />
+
+                    <Image Source="foodicon.png" HeightRequest="55" WidthRequest="55" HorizontalOptions="Start" Grid.Row="2" Grid.Column="0" Margin="400,0,0,0"/>
+                    <Entry x:Name="GroceriesExpenseEntry" Placeholder="Groceries Expense" WidthRequest="200" HeightRequest="0" Grid.Row="2" Grid.Column="1" HorizontalOptions="Start" />
+                    <Image Source="writeicon.png" HeightRequest="25" WidthRequest="25" Grid.Row="2" Grid.Column="2" HorizontalOptions="Start" />
+
+                    <Image Source="caricon.png" HeightRequest="55" WidthRequest="55" HorizontalOptions="Start" Grid.Row="3" Grid.Column="0" Margin="400,0,0,0"/>
+                    <Entry x:Name="TransportationExpenseEntry" Placeholder="Transportation Budget" WidthRequest="200" HeightRequest="0" Grid.Row="3" Grid.Column="1" HorizontalOptions="Start"  />
+                    <Image Source="writeicon.png" HeightRequest="25" WidthRequest="25" Grid.Row="3" Grid.Column="2" HorizontalOptions="Start" />
+
+                    <Image Source="popcornicon.png" HeightRequest="55" WidthRequest="55" HorizontalOptions="Start" Grid.Row="4" Grid.Column="0" Margin="400,0,0,0"/>
+                    <Entry x:Name="EntertainmentExpenseEntry" Placeholder="Entertainment Budget" WidthRequest="200" HeightRequest="0" Grid.Row="4" Grid.Column="1" HorizontalOptions="Start"  />
+                    <Image Source="writeicon.png" HeightRequest="25" WidthRequest="25" Grid.Row="4" Grid.Column="2" HorizontalOptions="Start" />
+
+                    <Image Source="questionicon.png" HeightRequest="55" WidthRequest="55" HorizontalOptions="Start" Grid.Row="5" Grid.Column="0" Margin="400,0,0,0"/>
+                    <Entry x:Name="MiscellaneousExpenseEntry" Placeholder="Miscellaneous Budget" WidthRequest="200" HeightRequest="0" Grid.Row="5" Grid.Column="1" HorizontalOptions="Start"  />
+                    <Image Source="writeicon.png" HeightRequest="25" WidthRequest="25" Grid.Row="5" Grid.Column="2" HorizontalOptions="Start" />
+
+                    <Image Source="coinicon.png" HeightRequest="55" WidthRequest="55" HorizontalOptions="Start" Grid.Row="6" Grid.Column="0" Margin="400,0,0,0"/>
+                    <Entry x:Name="SavingsExpenseEntry" Placeholder="Savings Budget" WidthRequest="200" HeightRequest="0" Grid.Row="6" Grid.Column="1" HorizontalOptions="Start" />
+                    <Image Source="writeicon.png" HeightRequest="25" WidthRequest="25" Grid.Row="6" Grid.Column="2" HorizontalOptions="Start" />
+
+                    <Image Source="debticon.png" HeightRequest="55" WidthRequest="55" HorizontalOptions="Start" Grid.Row="7" Grid.Column="0" Margin="400,0,0,0" />
+                    <Entry x:Name="DebtExpenseEntry" Placeholder="Debt Budget" WidthRequest="200" HeightRequest="0" Grid.Row="7" Grid.Column="1" HorizontalOptions="Start" />
+                    <Image Source="writeicon.png" HeightRequest="25" WidthRequest="25" Grid.Row="7" Grid.Column="2" HorizontalOptions="Start" />
+                </Grid>
+                <StackLayout Margin="280,-600,0,0" WidthRequest="50">
+                    <ImageButton x:Name="AddExpensesButton" Source="addexpensebuttonblue.png" WidthRequest="50" BackgroundColor="Transparent" BorderWidth="0" BorderColor="Transparent" Clicked="Button_Clicked" >
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal" />
+                                <VisualState x:Name="PointerOver">
+                                    <VisualState.Setters>
+                                        <Setter Property="Source" Value="addexpensebuttonwhite.png" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                    </ImageButton>
+                </StackLayout>
+            </VerticalStackLayout>
+        </Grid>
+    </VerticalStackLayout>
+</ContentPage>
+    
