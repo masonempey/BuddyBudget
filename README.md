@@ -4,7 +4,7 @@ Personal Project
 April 11th, 2024
 Mason Empey
 
-#Overview
+##Overview
 This project was created to learn the interaction with .NET MAUI and Xaml.
 
 Project was programmed with .NET MAUI and Xaml, linked to a SQLlite Database.
